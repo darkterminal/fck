@@ -1,0 +1,16 @@
+{
+    "name": "darkterminal/php-freestyle",
+    "autoload": {
+        "psr-4": {
+            "App\\": "."
+        },
+        "files": ["core/helpers.php"]
+    },
+    "authors": [
+        {
+            "name": "Imam Ali Mustofa",
+            "email": "d.darkterminal@gmail.com"
+        }
+    ],
+    "require": {}
+}

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Function to run PHP built-in server
+run_server() {
+    local port=${1:-5000}  # Use the provided port or default to 5000
+
+    # Navigate to the public folder
+    cd $(pwd)/public
+
+    # Run PHP built-in server
+    php -S localhost:$port
+}
+
+if [ "$(type -t $1)" = "function" ]; then
+    $1 "${@:2}"
+else
+    echo "Invalid function name."
+    exit 1
+fi
