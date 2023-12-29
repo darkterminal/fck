@@ -1,19 +1,51 @@
 #!/bin/bash
 
+# Function to display help
+display_help() {
+    echo "Usage: $0 <command> [options]"
+    echo
+    echo "Commands:"
+    echo "  run_server [port]   : Start PHP built-in server in the 'public' folder. If 'vendor' directory and 'composer.lock' file exist script will run composer install first."
+    echo "                        Default port is 5000 if not provided."
+    echo "  help                : Display this help message."
+}
+
 # Function to run PHP built-in server
 run_server() {
     local port=${1:-5000}  # Use the provided port or default to 5000
 
     # Navigate to the public folder
-    cd $(pwd)/public
+    cd "$(pwd)/public" || exit 1
+
+    # Check if 'vendor' directory and 'composer.lock' file exist
+    if [ ! -d "../vendor" ] || [ ! -f "../composer.lock" ]; then
+        echo "'vendor' directory or 'composer.lock' file not found. Running 'composer install'..."
+        # Run composer install
+        composer install || { echo "Error running 'composer install'"; exit 1; }
+    fi
 
     # Run PHP built-in server
-    php -S localhost:$port
+    php -S localhost:"$port"
 }
 
-if [ "$(type -t $1)" = "function" ]; then
-    $1 "${@:2}"
-else
-    echo "Invalid function name."
+# Check if a valid command is provided
+if [ $# -eq 0 ]; then
+    echo "Error: Missing command."
+    display_help
     exit 1
 fi
+
+# Process the command
+case "$1" in
+    run_server)
+        run_server "${@:2}"
+        ;;
+    help)
+        display_help
+        ;;
+    *)
+        echo "Invalid command: $1"
+        display_help
+        exit 1
+        ;;
+esac
