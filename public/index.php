@@ -1,19 +1,17 @@
 <?php
 
 use App\core\Application;
+use Dotenv\Dotenv;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$app = new Application(dirname(__DIR__));
+$dotenv = Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
 
-$app->router->get('/', 'SiteController@home');
-$app->router->get('/contact', 'SiteController@contact');
-$app->router->post('/contact', 'SiteController@handleContact');
+require_once __DIR__ . '/../config/app.php';
 
-$app->router->get('/login', 'AuthController@login');
-$app->router->post('/login', 'AuthController@login');
+$app = new Application(dirname(__DIR__), $config);
 
-$app->router->get('/register', 'AuthController@register');
-$app->router->post('/register', 'AuthController@register');
+require_once __DIR__ . '/../routers/web.php';
 
 $app->run();
