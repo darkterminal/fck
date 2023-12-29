@@ -1,0 +1,22 @@
+#!/usr/bin/php
+<?php
+
+use App\core\Application;
+use Dotenv\Dotenv;
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+require_once __DIR__ . '/config/app.php';
+
+$app = new Application(__DIR__, $config);
+
+if ($argv[1] === 'up') {
+    $app->db->applyMigrations();
+} else if ($argv[1] === 'down') {
+    $app->db->droppedMigrations();
+} else {
+    echo "Command not found!";
+}
