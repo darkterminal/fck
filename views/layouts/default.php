@@ -49,8 +49,9 @@
                 <li><a>Item 3</a></li>
             </ul>
         </div>
-        <div class="navbar-end">
-            <a class="btn">Button</a>
+        <div class="navbar-end gap-3">
+            <a href="/register" class="btn btn-secondary">Register</a>
+            <a href="/Login" class="btn btn-primary">Login</a>
         </div>
     </div>
     <div class="px-3">
