@@ -21,3 +21,28 @@ function text_alt_formatter($input)
 
     return implode(' ', $capitalizedWords);
 }
+
+function colorize($text, $color) {
+    $colors = [
+        'yellow' => '43',
+        'green' => '42',
+        'red' => '41',
+    ];
+
+    if (!isset($colors[$color])) {
+        die("Invalid color specified");
+    }
+
+    $colorCode = $colors[$color];
+    $resetCode = "\033[0m";
+
+    return " \033[{$colorCode};30m {$text} {$resetCode}";
+}
+
+function env($key, $default = null) {
+    if (is_null($default)) {
+        return php_sapi_name() === 'cli' ? getenv($key) : $_ENV[$key];
+    } else {
+        return php_sapi_name() === 'cli' ? (getenv($key) ?? $default) : ($_ENV[$key] ?? $default);
+    }
+}
