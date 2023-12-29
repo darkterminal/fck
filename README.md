@@ -1,10 +1,10 @@
 # fck - Work in Progress
 
-Welcome to my fck! This project is a work in progress and is being developed just for fun. It follows the Model-View-Controller (MVC) architectural pattern and aims to provide a structured and modular codebase for web development.
+Welcome to my fck framework! This project is a *work in progress* and is being developed just for fun. It follows the Model-View-Controller (MVC) architectural pattern and aims to provide a structured and modular codebase for web development.
 
 ## Project Overview
 
-This fck is designed to showcase my coding skills, experiment with different features, and serve as a playground for trying out new ideas. Please note that this project is not intended for production use, and some features may be incomplete or under development.
+This fck framework is designed to showcase my dancing knowledge, experiment with different features, and serve as a playground for trying out new (old) ideas. Please note that this project is not intended for production use (yet), and some features may be incomplete or under development.
 
 ## Features
 
