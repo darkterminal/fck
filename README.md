@@ -39,7 +39,9 @@ To get started with this project, follow these steps:
 
 ## Contributing
 
-Contributions are welcome! If you find any issues or have suggestions for improvements, feel free to open an issue or submit a pull request.
+Contributions are welcome (if you have time)! If you find any [issues](https://github.com/darkterminal/fck/issues) or have suggestions for improvements, feel free to open an issue or submit a pull request.
+
+Read more (if you want): [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## License
 
