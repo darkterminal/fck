@@ -2,9 +2,10 @@
 
 namespace Fckin\core;
 
+use Fckin\core\exceptions\NotFoundException;
+
 class Router
 {
-
     public Request $request;
     public Response $response;
     protected array $routes = [];
@@ -14,11 +15,6 @@ class Router
     {
         $this->request = $request;
         $this->response = $response;
-    }
-
-    public function group($path, $callback)
-    {
-        $this->routes['group'][$path] = $callback;
     }
 
     public function get($path, $callback)
@@ -51,7 +47,7 @@ class Router
     protected function notFoundResponse()
     {
         $this->response->setStatusCode(404);
-        return $this->renderView('_404');
+        throw new NotFoundException();
     }
 
     protected function handleStringCallback($callback)
@@ -66,8 +62,15 @@ class Router
     protected function callControllerMethod($callback)
     {
         [$controllerName, $method] = explode('@', $callback);
+
         $controller = $this->instantiateController($controllerName);
         Application::$app->controller = $controller;
+        Application::$app->controller->action = $method;
+        
+        foreach (Application::$app->controller->getMiddleware() as $middleware)
+        {
+            $middleware->execute();
+        }
 
         return call_user_func([$controller, $method], $this->request, $this->response);
     }
@@ -88,7 +91,10 @@ class Router
 
     protected function layoutContent()
     {
-        $layout = Application::$app->controller->layout;
+        $layout = Application::$app->layout;
+        if (Application::$app->controller) {
+            $layout = Application::$app->controller->layout;
+        }
         ob_start();
         include_once Application::$ROOT_DIR . "/views/layouts/$layout.php";
         return ob_get_clean();
