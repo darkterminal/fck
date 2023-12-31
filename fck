@@ -5,11 +5,11 @@ display_help() {
     echo "Usage: $0 <command> [options]"
     echo
     echo "Commands:"
-    echo "  run_server [port]                  : Start PHP built-in server in the 'public' folder. If 'vendor' directory and 'composer.lock' file exist,"
-    echo "                                       the script will run 'composer install' first. Default port is 5000 if not provided."
-    echo "  migration_create <additional_text> : Create a migration file with a PHP extension, an incremental timestamp prefix,and additional text."
-    echo "                                       The migration file is stored in the 'migrations' directory in the root folder."
-    echo "  help                               : Display this help message."
+    echo "  run_server [port]                  : Start the fck PHP built-in server in the fck 'public' folder. If fck 'vendor' directory and 'composer.lock' file exist,"
+    echo "                                       the fck script will run 'composer install' first. Default port is 5000 if not fck provided."
+    echo "  migration_create <additional_text> : Create a fck migration file with a fck PHP extension, an incremental timestamp prefix,and additional text."
+    echo "                                       The fck migration file is stored in the fck 'migrations' directory in the fck root folder."
+    echo "  help                               : Display this fck help message."
 }
 
 # Function to run PHP built-in server
@@ -21,7 +21,7 @@ run_server() {
 
     # Check if 'vendor' directory and 'composer.lock' file exist
     if [ ! -d "../vendor" ] || [ ! -f "../composer.lock" ]; then
-        echo "'vendor' directory or 'composer.lock' file not found. Running 'composer install'..."
+        echo "fck! 'vendor' directory or 'composer.lock' file not found. Running 'composer install'..."
         # Run composer install
         composer install || { echo "Error running 'composer install'"; exit 1; }
     fi
@@ -36,11 +36,11 @@ migration_create() {
     local timestamp=$(date +"%Y%m%d%H%M%S")
     local migration_file="migrations/f${timestamp}_${additional_text}.php"
     
-    echo "Creating migration file: $migration_file"
+    echo "Creating fck migration file: $migration_file"
     
     # You can customize the migration content as needed
     echo "<?php
-// Your migration content here
+// Your fck migration content here
 class f${timestamp}_${additional_text}
 {
     public function up()
@@ -58,7 +58,7 @@ class f${timestamp}_${additional_text}
 
 # Check if a valid command is provided
 if [ $# -eq 0 ]; then
-    echo "Error: Missing command."
+    echo "Error: The fck! Missing command."
     display_help
     exit 1
 fi
@@ -75,7 +75,7 @@ case "$1" in
         display_help
         ;;
     *)
-        echo "Invalid command: $1"
+        echo "fck! Invalid command: $1"
         display_help
         exit 1
         ;;
