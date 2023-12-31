@@ -3,6 +3,7 @@
 namespace Fckin\controllers;
 
 use Fckin\core\Controller;
+use Fckin\core\middlewares\AuthMiddleware;
 use Fckin\core\Request;
 use Fckin\core\Response;
 use Fckin\models\Login;
@@ -10,12 +11,18 @@ use Fckin\models\User;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->registerMiddleware(new AuthMiddleware(['profile']));
+    }
+
+
     public function login(Request $request, Response $response)
     {
         $login = new Login();
         if ($request->isPost()) {
             $login->loadData($request->getBody());
-            if ($login->isXssClean() && $login->validate() && $login->login()) {
+            if ($login->validate() && $login->login()) {
                 $response->redirect('/');
             }
             addToast('error', 'Username or password is invalid');
@@ -34,7 +41,7 @@ class AuthController extends Controller
         if ($request->isPost()) {
             $user->loadData($request->getBody());
 
-            if ($user->isXssClean() && $user->validate() && $user->register()) {
+            if ($user->validate() && $user->register()) {
                 addToast('success', 'Thanks for registering');
                 $response->redirect('/');
                 return;
@@ -54,5 +61,10 @@ class AuthController extends Controller
     {
         unAuthorized();
         $response->redirect('/');
+    }
+
+    public function profile()
+    {
+        return $this->render('profile');
     }
 }
