@@ -1,7 +1,7 @@
 <?php
 // Your migration content here
 
-use App\core\Application;
+use Fckin\core\Application;
 
 class f20231230013306_initial
 {

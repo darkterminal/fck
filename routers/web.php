@@ -9,3 +9,5 @@ $app->router->post('/login', 'AuthController@login');
 
 $app->router->get('/register', 'AuthController@register');
 $app->router->post('/register', 'AuthController@register');
+
+$app->router->get('/logout', 'AuthController@logout');

@@ -1,37 +1,58 @@
 <?php
 
-namespace App\controllers;
+namespace Fckin\controllers;
 
-use App\core\Controller;
-use App\core\Request;
-use App\models\RegisterModel;
+use Fckin\core\Controller;
+use Fckin\core\Request;
+use Fckin\core\Response;
+use Fckin\models\Login;
+use Fckin\models\User;
 
 class AuthController extends Controller
 {
-    public function login(Request $request)
+    public function login(Request $request, Response $response)
     {
+        $login = new Login();
         if ($request->isPost()) {
-            return 'Handle submitted data';
+            $login->loadData($request->getBody());
+            if ($login->isXssClean() && $login->validate() && $login->login()) {
+                $response->redirect('/');
+            }
+            addToast('error', 'Username or password is invalid');
+            return $this->render('login', [
+                'model' => $login
+            ]);
         }
-        return $this->render('login');
+        return $this->render('login', [
+            'model' => $login
+        ]);
     }
 
-    public function register(Request $request)
+    public function register(Request $request, Response $response)
     {
-        $registerModel = new RegisterModel();
+        $user = new User();
         if ($request->isPost()) {
-            $registerModel->loadData($request->getBody());
+            $user->loadData($request->getBody());
 
-            if ($registerModel->validate() && $registerModel->register()) {
-                return "Success";
+            if ($user->isXssClean() && $user->validate() && $user->register()) {
+                addToast('success', 'Thanks for registering');
+                $response->redirect('/');
+                return;
             }
+            addToast('error', 'Some input is not valid!');
             return $this->render('register', [
-                'model' => $registerModel
+                'model' => $user
             ]);
         }
 
         return $this->render('register', [
-            'model' => $registerModel
+            'model' => $user
         ]);
+    }
+
+    public function logout(Request $request, Response $response)
+    {
+        unAuthorized();
+        $response->redirect('/');
     }
 }

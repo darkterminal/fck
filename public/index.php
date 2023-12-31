@@ -1,6 +1,6 @@
 <?php
 
-use App\core\Application;
+use Fckin\core\Application;
 use Dotenv\Dotenv;
 
 require_once __DIR__ . '/../vendor/autoload.php';

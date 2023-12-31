@@ -1,19 +1,21 @@
 <?php
 
-namespace App\core\form;
-use App\core\Model;
+namespace Fckin\core\form;
+use Fckin\core\Model;
 
 class Field
 {
     public Model $model;
     public string $type = 'text';
     public string $attribute;
+    public string $classes;
 
-    public function __construct(Model $model, string $type, string $attribute)
+    public function __construct(Model $model, string $type, string $attribute, string $classes)
     {
         $this->model = $model;
         $this->type = $type;
         $this->attribute = $attribute;
+        $this->classes = $classes;
     }
 
     public function __toString()
@@ -23,7 +25,7 @@ class Field
                 <div class="label">
                     <span class="label-text">%s</span>
                 </div>
-                <input type="%s" name="%s" placeholder="Type %s here" value="%s" class="input input-bordered w-full %s" />
+                <input type="%s" name="%s" placeholder="Type %s here" value="%s" class="input input-bordered w-full %s %s" />
                 <div className="label">
                     <span className="label-text-alt">%s</span>
                 </div>
@@ -34,6 +36,7 @@ class Field
             $this->attribute,
             text_alt_formatter($this->attribute),
             $this->model->{$this->attribute},
+            $this->classes,
             $this->model->hasError($this->attribute) ? 'input-error' : '',
             $this->model->getFirstError($this->attribute)
         );

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\controllers;
+namespace Fckin\controllers;
 
-use App\core\Controller;
-use App\core\Request;
+use Fckin\core\Controller;
+use Fckin\core\Request;
 
 class SiteController extends Controller
 {

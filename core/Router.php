@@ -1,6 +1,6 @@
 <?php
 
-namespace App\core;
+namespace Fckin\core;
 
 class Router
 {
@@ -8,11 +8,17 @@ class Router
     public Request $request;
     public Response $response;
     protected array $routes = [];
+    protected string $routePrefix = '';
 
     public function __construct(Request $request, Response $response)
     {
         $this->request = $request;
         $this->response = $response;
+    }
+
+    public function group($path, $callback)
+    {
+        $this->routes['group'][$path] = $callback;
     }
 
     public function get($path, $callback)
@@ -27,8 +33,8 @@ class Router
 
     public function resolve()
     {
-        $path = $this->request->getPath();
-        $method = $this->request->method();
+        $path = strtolower($this->request->getPath());
+        $method = strtolower($this->request->method());
         $callback = $this->routes[$method][$path] ?? false;
 
         if ($callback === false) {
@@ -39,7 +45,7 @@ class Router
             return $this->handleStringCallback($callback);
         }
 
-        return call_user_func($callback, $this->request);
+        return call_user_func($callback, $this->request, $this->response);
     }
 
     protected function notFoundResponse()
@@ -63,12 +69,12 @@ class Router
         $controller = $this->instantiateController($controllerName);
         Application::$app->controller = $controller;
 
-        return call_user_func([$controller, $method], $this->request);
+        return call_user_func([$controller, $method], $this->request, $this->response);
     }
 
     protected function instantiateController($controllerName)
     {
-        $controllerClass = '\App\controllers\\' . $controllerName;
+        $controllerClass = '\Fckin\controllers\\' . $controllerName;
         return new $controllerClass();
     }
 
