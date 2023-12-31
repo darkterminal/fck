@@ -3,6 +3,11 @@
 use Fckin\core\Application;
 use Fckin\core\FTAuth;
 
+function isGuest()
+{
+    return !isset($_COOKIE['FTA_TOKEN']);
+}
+
 function unAuthorized()
 {
     $auth = new FTAuth('randomsecretovertheworld0123456789');
