@@ -11,11 +11,13 @@ use Fckin\models\User;
 
 class AuthController extends Controller
 {
+    protected $user;
+
     public function __construct()
     {
         $this->registerMiddleware(new AuthMiddleware(['profile']));
+        $this->user = new User();
     }
-
 
     public function login(Request $request, Response $response)
     {
@@ -37,23 +39,21 @@ class AuthController extends Controller
 
     public function register(Request $request, Response $response)
     {
-        $user = new User();
         if ($request->isPost()) {
-            $user->loadData($request->getBody());
-
-            if ($user->validate() && $user->register()) {
+            $this->user->loadData($request->getBody());
+            if ($this->user->validate() && $this->user->register()) {
                 addToast('success', 'Thanks for registering');
                 $response->redirect('/');
                 return;
             }
             addToast('error', 'Some input is not valid!');
             return $this->render('register', [
-                'model' => $user
+                'model' => $this->user
             ]);
         }
 
         return $this->render('register', [
-            'model' => $user
+            'model' => $this->user
         ]);
     }
 
@@ -65,6 +65,6 @@ class AuthController extends Controller
 
     public function profile()
     {
-        return $this->render('profile');
+        return $this->render('profile', ['user' => $this->user->detail()]);
     }
 }
