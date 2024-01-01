@@ -10,14 +10,20 @@ function isGuest()
 
 function unAuthorized()
 {
-    $auth = new FTAuth('randomsecretovertheworld0123456789');
+    $auth = new FTAuth(env('FTA_SECRET'));
     return $auth->unsetAuth();
 }
 
 function isAuthenticate()
 {
-    $auth = new FTAuth('randomsecretovertheworld0123456789');
+    $auth = new FTAuth(env('FTA_SECRET'));
     return $auth->isAuthenticate();
+}
+
+function getAuthData()
+{
+    $auth = new FTAuth(env('FTA_SECRET'));
+    return $auth->getData();
 }
 
 function addToast($key, $message)
