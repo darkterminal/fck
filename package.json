@@ -1,0 +1,17 @@
+{
+  "name": "fck",
+  "version": "1.0.0",
+  "description": "Welcome to my fck framework!",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "start": "concurrently \"./fck run_server 2500\" \"npx tailwindcss -i views/style/fckin.css -o public/fckout.css --watch\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "daisyui": "^4.4.24",
+    "tailwindcss": "^3.4.0"
+  }
+}
