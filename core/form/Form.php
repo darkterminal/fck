@@ -2,7 +2,7 @@
 
 namespace Fckin\core\form;
 
-use Fckin\core\Model;
+use Fckin\core\db\Model;
 
 class Form
 {
@@ -29,7 +29,7 @@ class Form
 
         return $attributeString;
     }
-    
+
     /**
      * Create Input Field
      *
@@ -39,11 +39,41 @@ class Form
      * @param  string $classes add extra Tailwind CSS classes
      * @return string HTML Input Field
      */
-    public static function field(Model $model, string $type, string $attribute, string $classes = '')
+    public static function input(Model $model, string $type, string $attribute, string $classes = '')
     {
-        echo new Field($model, $type, $attribute, $classes);
+        echo new Input($model, $type, $attribute, $classes);
     }
-        
+
+    public static function textarea(Model $model, string $attribute, string $classes = '')
+    {
+        echo new Textarea($model, $attribute, $classes);
+    }
+
+    public static function checkbox(Model $model, string $attribute, string $label = null, bool $checked = false)
+    {
+        echo new Checkbox($model, $label, $attribute, $checked);
+    }
+
+    public static function radio(Model $model, string $attribute, string $label = null, bool $checked = false)
+    {
+        echo new Radio($model, $label, $attribute, $checked);
+    }
+
+    public static function fileinput(Model $model, string $attribute, string $classes = '')
+    {
+        echo new FileInput($model, $attribute, $classes);
+    }
+
+    public static function range(Model $model, string $name, int $min, int $max, int $step = 0, string $classes = '')
+    {
+        echo new Range($model, $name, $min, $max, $step, $classes);
+    }
+
+    public static function rating(Model $model, string $name, int $stars, string $ratingType = 'star', string $classes = '')
+    {
+        echo new Rating($model, $name, $stars, $ratingType, $classes);
+    }
+
     /**
      * Create Submit Button
      *
@@ -51,7 +81,8 @@ class Form
      * @param  string $class string classes using Tailwind CSS
      * @return string HTML Submit Button
      */
-    public static function submit(string $text, string $class = 'btn btn-outline btn-block my-3') {
+    public static function submit(string $text, string $class = 'btn btn-outline btn-block my-3')
+    {
         echo sprintf('<button class="%s" type="submit">%s</button>', $class, $text);
     }
 }
