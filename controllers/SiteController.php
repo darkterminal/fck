@@ -1,11 +1,10 @@
 <?php
 
-namespace Fckin\controllers;
+namespace App\controllers;
 
 use Fckin\core\Controller;
-use Fckin\core\Request;
-use Fckin\models\Contact;
-use Fckin\models\User;
+use App\models\Contact;
+use App\models\User;
 
 class SiteController extends Controller
 {

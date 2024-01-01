@@ -1,13 +1,13 @@
 <?php
 
-namespace Fckin\controllers;
+namespace App\controllers;
 
 use Fckin\core\Controller;
 use Fckin\core\middlewares\AuthMiddleware;
 use Fckin\core\Request;
 use Fckin\core\Response;
-use Fckin\models\Login;
-use Fckin\models\User;
+use App\models\Login;
+use App\models\User;
 
 class AuthController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Fckin\models;
+namespace App\models;
 
 use Fckin\core\FTAuth;
 use Fckin\core\db\Model;

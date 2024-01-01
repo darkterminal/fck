@@ -4,8 +4,52 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f4a484737c119aa1967c8906300e27df",
+    "content-hash": "d2bf4a9ced8c55cce4a8bb6dc0582e1a",
     "packages": [
+        {
+            "name": "darkterminal/the-fck-core",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/darkterminal/the-fck.git",
+                "reference": "d1eec33b4de7a331053bc66b7408bf76256250af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/darkterminal/the-fck/zipball/d1eec33b4de7a331053bc66b7408bf76256250af",
+                "reference": "d1eec33b4de7a331053bc66b7408bf76256250af",
+                "shasum": ""
+            },
+            "require": {
+                "vlucas/phpdotenv": "^5.6",
+                "voku/anti-xss": "^4.1"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "core/helpers.php"
+                ],
+                "psr-4": {
+                    "Fckin\\": "."
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Imam Ali Mustofa",
+                    "email": "d.darkterminal@gmail.com"
+                }
+            ],
+            "description": "The fck core dependencies",
+            "support": {
+                "issues": "https://github.com/darkterminal/the-fck/issues",
+                "source": "https://github.com/darkterminal/the-fck/tree/v1.0.2"
+            },
+            "time": "2024-01-01T12:21:11+00:00"
+        },
         {
             "name": "graham-campbell/result-type",
             "version": "v1.1.2",
