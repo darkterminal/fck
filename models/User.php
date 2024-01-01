@@ -2,7 +2,7 @@
 
 namespace Fckin\models;
 
-use Fckin\core\Model;
+use Fckin\core\db\Model;
 
 class User extends Model
 {
@@ -33,5 +33,12 @@ class User extends Model
             'password' => password_hash($this->password, PASSWORD_DEFAULT)
         ]);
         return $result > 0;
+    }
+
+    public function detail()
+    {
+        $authData = getAuthData();
+        $data = $this->table('users')->where('id', '=', (int) $authData['user_id'])->get();
+        return $data;
     }
 }
