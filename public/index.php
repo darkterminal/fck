@@ -1,17 +1,8 @@
 <?php
 
-use Fckin\core\Application;
-use Dotenv\Dotenv;
+use Fckin\core\Fck;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-$dotenv = Dotenv::createImmutable(dirname(__DIR__));
-$dotenv->load();
-
-require_once __DIR__ . '/../config/app.php';
-
-$app = new Application(dirname(__DIR__), $config);
-
-require_once __DIR__ . '/../routers/web.php';
-
-$app->run();
+$app = new Fck(dirname(__DIR__));
+$app->boot();
