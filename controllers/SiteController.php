@@ -16,20 +16,11 @@ class SiteController extends Controller
             $this->user = new User();
         }
     }
-    
+
     public function home() {
         $params = [
             'user' => $this->user?->detail()
         ];
         return $this->render('home', $params);
-    }
-
-    public function contact() {
-        $contact = new Contact();
-        $params = [
-            'model' => $contact,
-            'user' => $this->user?->detail()
-        ];
-        return $this->render('contact', $params);
     }
 }

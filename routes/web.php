@@ -1,7 +1,6 @@
 <?php
 
 $app->router->get('/', 'SiteController@home');
-$app->router->get('/contact', 'SiteController@contact');
 
 $app->router->get('/login', 'AuthController@login');
 $app->router->post('/login', 'AuthController@login');
