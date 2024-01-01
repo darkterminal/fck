@@ -27,6 +27,8 @@ run_server() {
     fi
 
     # Run PHP built-in server
+    ip_address=$(hostname --all-ip-address | awk '{print $1}')
+    echo "Local Network: $ip_address:$port"
     php -S localhost:"$port"
 }
 
@@ -35,9 +37,9 @@ migration_create() {
     local additional_text=$1
     local timestamp=$(date +"%Y%m%d%H%M%S")
     local migration_file="migrations/f${timestamp}_${additional_text}.php"
-    
+
     echo "Creating fck migration file: $migration_file"
-    
+
     # You can customize the migration content as needed
     echo "<?php
 // Your fck migration content here
