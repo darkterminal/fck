@@ -3,7 +3,7 @@
 namespace Fckin\models;
 
 use Fckin\core\FTAuth;
-use Fckin\core\Model;
+use Fckin\core\db\Model;
 
 class Login extends Model
 {
@@ -33,7 +33,7 @@ class Login extends Model
             return false;
         }
 
-        $auth = new FTAuth('randomsecretovertheworld0123456789');
+        $auth = new FTAuth(env('FTA_SECRET'));
         $token = $auth->generateToken($user->id);
         return $auth->setAuth($token);
     }
