@@ -4,27 +4,33 @@ namespace Fckin\controllers;
 
 use Fckin\core\Controller;
 use Fckin\core\Request;
+use Fckin\models\Contact;
+use Fckin\models\User;
 
 class SiteController extends Controller
 {
+    protected $user;
+
+    public function __construct()
+    {
+        if (isAuthenticate()) {
+            $this->user = new User();
+        }
+    }
+    
     public function home() {
         $params = [
-            'name' => 'darkterminal'
+            'user' => $this->user?->detail()
         ];
         return $this->render('home', $params);
     }
 
     public function contact() {
+        $contact = new Contact();
         $params = [
-            'name' => 'darkterminal'
+            'model' => $contact,
+            'user' => $this->user?->detail()
         ];
         return $this->render('contact', $params);
-    }
-
-    public function handleContact(Request $request)
-    {
-        $body = $request->getBody();
-        \dump($body);
-        return 'handling submitted data!';
     }
 }
