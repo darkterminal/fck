@@ -1,22 +1,38 @@
-<h1 class="text-2xl my-3 text-center">Contact <?= $name ?></h1>
-<form action="" method="post" class="w-[80%] mx-auto">
-    <label class="form-control w-full">
-        <div class="label">
-            <span class="label-text">Subject</span>
-        </div>
-        <input type="text" name="subject" placeholder="Type here" class="input input-bordered w-full" />
-    </label>
-    <label class="form-control w-full">
-        <div class="label">
-            <span class="label-text">Email</span>
-        </div>
-        <input type="email" name="email" placeholder="Type here" class="input input-bordered w-full" />
-    </label>
-    <label class="form-control">
-        <div class="label">
-            <span class="label-text">Body</span>
-        </div>
-        <textarea name="body" class="textarea textarea-bordered h-24" placeholder="Type here"></textarea>
-    </label>
-    <button class="btn btn-outline btn-block my-3" type="submit">Default</button>
-</form>
+<?php
+
+use Fckin\core\form\Form;
+use Fckin\core\db\Model;
+use Fckin\core\View;
+
+/** @var View $this */
+/** @var Model $model */
+
+$this->title = 'Contact | fck.';
+?>
+
+<h1 class="text-2xl my-3 text-center">Contact</h1>
+
+<?php
+Form::begin('', 'post', ['class' => 'w-1/2 mx-auto', 'autocomplete' => 'off']);
+
+Form::input($model, 'text', 'subject');
+Form::input($model, 'email', 'email');
+
+Form::textarea($model, 'message');
+
+Form::checkbox($model,'sendMeMessage', 'Send a message');
+Form::checkbox($model, 'agreeTermsAndCondition', 'Agree TOC');
+
+Form::radio($model, 'agreement', 'Agree');
+Form::radio($model, 'agreement', 'Disagree');
+
+Form::fileinput($model, 'Upload File');
+
+Form::range($model, 'rateRange', 0, 100);
+
+Form::rating($model, 'review', 5, 'heart', 'bg-red-500');
+
+Form::submit('Send Message', 'btn btn-outline btn-primary btn-block my-3');
+
+Form::end();
+?>

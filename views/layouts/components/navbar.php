@@ -1,3 +1,4 @@
+<?php /** @var Fckin\models\User $user */ ?>
 <div class="navbar bg-base-100">
     <div class="navbar-start">
         <div class="dropdown">
@@ -27,10 +28,11 @@
     </div>
     <div class="navbar-end gap-3">
         <?php if (!isAuthenticate()) : ?>
-            <a href="/register" class="btn btn-secondary">Register</a>
-            <a href="/login" class="btn btn-primary">Login</a>
+            <a href="/register" class="btn btn-outline btn-sm">Register</a>
+            <a href="/login" class="btn btn-ghost btn-sm">Login</a>
         <?php else : ?>
-            <a href="/logout" class="btn btn-primary">Guest</a>
+            <a href="javascript:;" class="btn btn-outline btn-sm"><?= $user->firstName ?></a>
+            <a href="/logout" class="btn btn-outline btn-sm">Logout</a>
         <?php endif ?>
     </div>
 </div>
