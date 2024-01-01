@@ -5,6 +5,7 @@ namespace Fckin\core;
 class FTAuth
 {
     private $secretKey;
+    protected $data = [];
 
     public function __construct($secretKey)
     {
@@ -15,7 +16,7 @@ class FTAuth
     {
         $header = json_encode(['typ' => 'FTA', 'alg' => $algorithm]);
         $base64UrlHeader = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($header));
-        
+
         $payload = json_encode(['user_id' => $userId, 'exp' => time() + $expirationTime]);
         $base64UrlPayload = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($payload));
 
@@ -60,7 +61,13 @@ class FTAuth
 
     public function unsetAuth()
     {
-        setcookie('FTA_TOKEN', '', time() - (3600*2), '/');
+        setcookie('FTA_TOKEN', '', time() - (3600 * 2), '/');
         return isset($_COOKIE['FTA_TOKEN']);
+    }
+
+    public function getData()
+    {
+        $token = isset($_COOKIE['FTA_TOKEN']) ? $_COOKIE['FTA_TOKEN'] : null;
+        return $this->verifyToken($token);
     }
 }
