@@ -1,5 +1,5 @@
 {
-    "name": "darkterminal/php-freestyle",
+    "name": "darkterminal/fck",
     "autoload": {
         "psr-4": {
             "App\\": "."

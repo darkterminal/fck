@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d2bf4a9ced8c55cce4a8bb6dc0582e1a",
+    "content-hash": "1a94a82bbcfe88d95734249f6e1077a9",
     "packages": [
         {
             "name": "darkterminal/the-fck-core",
