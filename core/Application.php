@@ -2,6 +2,8 @@
 
 namespace Fckin\core;
 
+use Fckin\core\db\Database;
+
 class Application
 {
     public static string $ROOT_DIR;
@@ -13,6 +15,7 @@ class Application
     public Response $response;
     public Session $session;
     public Database $db;
+    public View $view;
     public ?Controller $controller = null;
 
     public function __construct($rootPath, array $config)
@@ -22,6 +25,7 @@ class Application
         $this->request = new Request();
         $this->response = new Response();
         $this->session = new Session();
+        $this->view = new View();
         $this->router = new Router($this->request, $this->response);
         $this->db = new Database($config['db']);
     }
@@ -40,7 +44,7 @@ class Application
             echo $this->router->resolve();
         } catch (\Throwable $e) {
             $this->response->setStatusCode($e->getCode());
-            echo $this->router->renderView('_error', [
+            echo $this->view->renderView('_error', [
                 'exception' => $e
             ]);
         }
