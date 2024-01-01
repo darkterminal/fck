@@ -1,5 +1,10 @@
 <?php
+use Fckin\core\View;
+
 /** @var Exception $exception */
+/** @var View $this */
+
+$this->title = "Error {$exception->getCode()} | fck."; 
 ?>
 <div class="grid h-screen place-content-center px-4">
   <div class="text-center">
