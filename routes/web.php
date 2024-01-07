@@ -1,6 +1,7 @@
 <?php
 
 $app->router->get('/', 'SiteController@home');
+$app->router->get('/component', 'SiteController@component');
 
 $app->router->get('/login', 'AuthController@login');
 $app->router->post('/login', 'AuthController@login');
