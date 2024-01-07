@@ -2,7 +2,7 @@
 $this->title = 'Home | fck.';
 ?>
 <div class="p-3 w-8/12 mx-auto">
-    <h1 class="text-3xl font-bold font-sans text-center mb-5">The fck PHP Framework for Freestylers</h1>
+    <h1 class="text-3xl font-bold font-sans text-center mb-5">The fck. PHP Framework for Freestylers</h1>
     <div class="grid grid-cols-2 gap-4">
         <div class="card w-full bg-base-content text-base-100 shadow-xl">
             <div class="card-body text-center">
