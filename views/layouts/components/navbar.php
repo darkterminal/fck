@@ -11,6 +11,7 @@
             </div>
             <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                 <li><a href="/">Home</a></li>
+                <li><a href="/component">The fck. Component</a></li>
                 <?php if (isAuthenticate()) : ?>
                     <li><a href="/profile">Profile</a></li>
                 <?php endif ?>
@@ -21,6 +22,7 @@
     <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
             <li><a href="/">Home</a></li>
+            <li><a href="/component">The fck. Component</a></li>
             <?php if (isAuthenticate()) : ?>
                 <li><a href="/profile">Profile</a></li>
             <?php endif ?>
