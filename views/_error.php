@@ -4,7 +4,22 @@ use Fckin\core\View;
 /** @var Exception $exception */
 /** @var View $this */
 
-$this->title = "Error {$exception->getCode()} | fck."; 
+$this->title = "Error {$exception->getCode()} | fck.";
+if (!empty($database) && $database === true):
+?>
+<div class="grid h-screen place-content-center px-4">
+  <div class="text-center">
+    <h1 class="text-9xl font-bold text-red-800"><?= $exception->getCode() ?></h1>
+
+    <p class="text-2xl font-bold tracking-tight text-slate-900 dark:text-red-800 sm:text-4xl">
+      Ouch Database Error!
+    </p>
+
+    <p class="mt-4 text-red-800 dark:text-red-800"><?= $exception->getMessage() ?></p>
+  </div>
+</div>
+<?php
+else:
 ?>
 <div class="grid h-screen place-content-center px-4">
   <div class="text-center">
@@ -24,3 +39,6 @@ $this->title = "Error {$exception->getCode()} | fck.";
     </a>
   </div>
 </div>
+<?php
+endif;
+?>

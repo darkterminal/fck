@@ -1,3 +1,7 @@
+<?php
+
+/** @var Exception $exception */
+?>
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 
@@ -10,9 +14,9 @@
 
 <body>
     <?php
-    include 'components/navbar.php';
+    if (empty($exception) && empty($database))
+        include 'components/navbar.php';
     ?>
-    <?= toast('success') ?>
     {{content}}
 </body>
 
