@@ -7,5 +7,6 @@ $config = [
         'dbname' => env('DATABASE_NAME'),
         'user' => env('DATABASE_USER'),
         'password' => env('DATABASE_PASSWORD'),
+        'type' => env('DATABASE_TYPE'),
     ]
 ];
