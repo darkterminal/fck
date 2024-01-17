@@ -1,4 +1,7 @@
 <?php
+use Fckin\core\Application;
+
+/** @var Application $app */
 
 $app->router->get('/', 'SiteController@home');
 $app->router->get('/component', 'SiteController@component');
