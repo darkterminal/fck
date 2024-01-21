@@ -1,6 +1,6 @@
 <?php
 
-$config = [
+return [
     'db' => [
         'host' => env('DATABASE_HOST'),
         'port' => env('DATABASE_PORT'),

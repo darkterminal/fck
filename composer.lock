@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "darkterminal/the-fck-core",
-            "version": "v1.0.5",
+            "version": "v1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/darkterminal/the-fck.git",
-                "reference": "575fe29e6c1f9c5011c0a9b82488d2950a1de94e"
+                "reference": "ba1e099d44125af512ec277cd6b1e2a001aeb0f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/darkterminal/the-fck/zipball/575fe29e6c1f9c5011c0a9b82488d2950a1de94e",
-                "reference": "575fe29e6c1f9c5011c0a9b82488d2950a1de94e",
+                "url": "https://api.github.com/repos/darkterminal/the-fck/zipball/ba1e099d44125af512ec277cd6b1e2a001aeb0f9",
+                "reference": "ba1e099d44125af512ec277cd6b1e2a001aeb0f9",
                 "shasum": ""
             },
             "require": {
@@ -49,9 +49,9 @@
             "description": "The fck core dependencies",
             "support": {
                 "issues": "https://github.com/darkterminal/the-fck/issues",
-                "source": "https://github.com/darkterminal/the-fck/tree/v1.0.5"
+                "source": "https://github.com/darkterminal/the-fck/tree/v1.0.6"
             },
-            "time": "2024-01-17T09:51:11+00:00"
+            "time": "2024-01-21T03:39:12+00:00"
         },
         {
             "name": "graham-campbell/result-type",
