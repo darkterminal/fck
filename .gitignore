@@ -2,3 +2,4 @@ vendor/
 .vscode/
 .env
 node_modules/
+gitversion
